@@ -1,0 +1,8 @@
+<h2>RESULT ADD</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    {% if profile.role == "faculty" or profile.role == "admin" %}
+     <button type="submit">Save</button>
+    {% endif %}
+</form>

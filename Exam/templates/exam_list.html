@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam List</title>
+</head>
+<body>
+ <table border="1">
+<tr>
+<th>NAME</th>
+<th>COURSE</th>
+<th>EXAM DATE</th>
+
+
+</tr>
+
+{% for e in exam %}
+<tr>
+<td>{{ e.name }}</td>
+<td>{{ e.course }}</td>
+<td>{{ e.exam_date }}</td>
+
+<td>
+    {% if profile.role == "faculty" or profile.role == "admin" %}
+<a href={% url "Edit_Exam" e.id %}>Edit</a>
+<a href={% url "Delete_Exam"  e.id %}>Delete</a>
+{% endif %}
+</td>
+</tr>
+{% endfor %}
+
+
+</table>  
+{% if profile.role == "faculty" or profile.role == "admin" %}
+<a href="{% url 'Add_Exam' %}">
+    <button style="background-color: blue; color: white;">Add EXAM</button>
+    {% endif %}
+    </a> 
+</body>
+</html>

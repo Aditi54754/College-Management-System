@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance List</title>
+</head>
+<body>
+ <table border="1">
+<tr>
+<th>STUDENT</th>
+<th>Course</th>
+<th>DATE</th>
+<th>PRESENT</th>
+
+
+
+</tr>
+
+{% for a in attendance %}
+<tr>
+<td>{{ a.student }}</td>
+<td>{{ a.course }}</td>
+<td>{{ a.date }}</td>
+<td>{{ a.present }}</td>
+<td>
+   {% if profile.role == "faculty" or profile.role == "admin" %} 
+<a href={% url "Edit_Attendance" a.id %}>Edit</a>
+<a href={% url "Delete_Attendance"  a.id %}>Delete</a>
+{% endif %}
+</td>
+</tr>
+{% endfor %}
+
+</table>   
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject List</title>
+</head>
+<body>
+ <table border="1">
+<tr>
+<th>Course</th>
+<th>Name</th>
+<th>Credits</th>
+
+
+</tr>
+
+{% for s in subject %}
+<tr>
+<td>{{ s.course }}</td>
+<td>{{ s.name }}</td>
+<td>{{ s.Credits }}</td>
+<td>
+{% if profile.role == "faculty" or profile.role == "admin" %}
+<a href={% url "Edit_Subject" s.id %}>Edit</a>
+<a href={% url "Delete_Subject"  s.id %}>Delete</a>
+{% endif %}
+</td>
+</tr>
+{% endfor %}
+
+</table>   
+</body>
+</html>
